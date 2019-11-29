@@ -1,0 +1,64 @@
+public class BST
+{
+public static boolean issamebst(int x[], int y[], int n)
+{
+if(n==0 )
+{
+return true;
+}
+if(x[0]!=y[0])
+{
+return false;
+}
+if(n==1)
+{
+return true;
+}
+int leftx[]= new int[n-1];
+int rightx[]= new int[n-1];
+int lefty[]= new int[n-1];
+int righty[]= new int[n-1];
+int k=0 , l=0 , m=0 , o=0;
+for(int i=1; i<n; i++)
+{
+if(x[i]<x[0])
+{
+leftx[k++]=x[i];
+}
+else
+{
+rightx[l++]=x[i];
+}
+if(y[i]<y[0])
+{
+lefty[m++]=y[i];
+}
+else
+{
+righty[o++]=y[i];
+}
+}
+if(k!=m )
+{
+return false;
+}
+if(l!=o)
+{
+return false;
+}
+return issamebst(leftx, lefty, k) && issamebst(rightx,  righty, l);
+}
+public static void main(String args[])
+{
+int x[] = {15,25,20,22,30,18,10,8,9,12,6};
+int y[] = {15, 10,12,8,25,30,6,20,18,9,22};
+if(x.length == y.length && issamebst(x,y,x.length))
+{
+System.out.println("Given keys represent same BSTs");
+}
+else
+{
+System.out.println("Given keys represent different BSTs");
+}
+}
+}
