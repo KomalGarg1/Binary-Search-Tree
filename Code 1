@@ -1,0 +1,78 @@
+//check whether a gievn binary tree is bst or not
+public class tree
+{
+static class Node
+{
+int data;
+Node left;
+Node right;
+Node(int d)
+{
+data = d;
+left = right = null;
+}
+}
+public static Node insert(Node root, int key)
+{
+if(root==null)
+{
+return new Node(key);
+}
+else
+{
+if(key<root.data)
+{
+root.left = insert(root.left, key);
+}
+else
+{
+root.right= insert(root.right, key);
+}
+return root;
+}
+public static boolean isbst(Node node, int minkey, int maxkey)
+{
+if(node == null)
+return true;
+if(node.data<minkey || node.data>maxkey)
+{
+return false;
+}
+return isbst(node.left, minkey , node.data)&& isbst(node.right , node.data, maxkey);
+}
+public static void isbst(Node root)
+{
+if(root, Integer.MIN_VALUE , Integer.MAX_VALUE)
+{
+System.out.println("YES it is bst");
+}
+else
+{
+System.out.println("No");
+}
+}
+public static void swap(Node root)
+{
+Node left = root.left;
+root.left = root.right;
+root.right = left;
+}
+public static void main(String args[])
+{
+Node root = null;
+int keys = {15,10,20,8, 12,16,25};
+for(int key : keys)
+{
+root = insert(root,key);
+}
+swap(root);
+isbst(root);
+}
+OUTPUT : No 
+
+
+
+
+
+
+
