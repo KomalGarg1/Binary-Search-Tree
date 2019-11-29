@@ -30,6 +30,7 @@ root.right= insert(root.right, key);
 }
 return root;
 }
+}
 public static boolean isbst(Node node, int minkey, int maxkey)
 {
 if(node == null)
@@ -42,7 +43,7 @@ return isbst(node.left, minkey , node.data)&& isbst(node.right , node.data, maxk
 }
 public static void isbst(Node root)
 {
-if(root, Integer.MIN_VALUE , Integer.MAX_VALUE)
+if(isbst(root, Integer.MIN_VALUE , Integer.MAX_VALUE))
 {
 System.out.println("YES it is bst");
 }
@@ -60,13 +61,14 @@ root.right = left;
 public static void main(String args[])
 {
 Node root = null;
-int keys = {15,10,20,8, 12,16,25};
+int keys[] = {15,10,20,8, 12,16,25};
 for(int key : keys)
 {
 root = insert(root,key);
 }
 swap(root);
 isbst(root);
+}
 }
 OUTPUT : No 
 
