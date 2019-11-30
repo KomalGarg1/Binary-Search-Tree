@@ -1,0 +1,98 @@
+public class BST
+{
+  static class Node 
+  {
+  int data;
+  Node left;
+  Node right;
+  Node(int d)
+  {
+  data = d;
+  left = null;
+  right = null;
+  }
+  }
+ public static Node insert(Node root , int key)
+	{
+		if(root==null)
+			return new Node(key);
+		else
+		{
+			if(key<root.data)
+			{
+				root.left = insert(root.left, key);
+			}
+			else
+			{
+				root.right = insert(root.right , key);
+			}
+		}
+		return root;
+	}
+	public static Node findMaximum(Node root)
+	{
+		while(root.right!=null)
+		{
+			root = root.right;
+		}
+		return root;
+	}
+	public static Node findPredecessor(Node root, Node prec, int key)
+	{
+		if(root == null)
+			return prec;
+		if(root.data==key)
+		{
+			if(root.left!=null)
+			{
+				return findMaximum(root.left);
+			}
+		}
+		else if(key<root.data)
+		{
+			return findPredecessor(root.left, prec , key);
+		}
+		else
+			
+		{
+			prec = root;
+			return findPredecessor(root.right, prec, key);
+		}
+		return prec;
+		
+	}
+	public static void main(String[] args)
+	{
+		/* Construct below tree
+				   15
+				 /	\
+				/	  \
+			   10	   20
+			  /  \	 /  \
+			 /	\   /	\
+			8	 12 16	25
+		*/
+
+		int[] keys = { 15, 10, 20, 8, 12, 16, 25 };
+
+		Node root = null;
+		for (int key : keys) {
+			root = insert(root, key);
+		}
+      for(int key : keys)
+      {
+    	  Node prec = findPredecessor(root , null , key);
+    	 
+    	  if(prec!=null)
+    	  {
+    		  System.out.println("The predecessor of "+key +" is "+prec.data);
+    	  }
+    	  else
+    	  {
+    		  System.out.println("Predecessor doesn't exists for node "
+						+ key);
+
+    	  }
+      }
+}
+}
