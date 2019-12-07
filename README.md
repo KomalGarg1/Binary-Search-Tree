@@ -1,1 +1,1 @@
-# Binary-Search-Tree
+Trees in Data Structure
