@@ -1,0 +1,45 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
+//print level Order
+public class Trees19 {
+	static class Node
+	{
+		int data;
+		Node left;
+		Node right;
+		Node(int d)
+		{
+			data = d;
+			left = right = null;
+		}
+	}
+	public static void main(String args[])
+	{
+		Node root = new Node(1);
+		root.left = new Node(2);
+		root.right = new Node(3);
+		root.left.left = new Node(4);
+		root.left.right = new Node(5);
+		printlevelorder(root);
+	}
+	public static void printlevelorder(Node root)
+	{
+		Queue<Node> queue = new LinkedList<Node>();
+		queue.add(root);
+		while(!queue.isEmpty())
+		{
+			Node tempNode = queue.poll();
+			System.out.print(tempNode.data+" ");
+			if(tempNode.left!=null)
+			{
+				queue.add(tempNode.left);
+			}
+			if(tempNode.right!=null)
+			{
+				queue.add(tempNode.right);
+			}
+		}
+	}
+
+}
